@@ -93,7 +93,7 @@ pub const ModePacked = packed_struct: {
         fields[i] = .{
             .name = entry.name,
             .type = bool,
-            .default_value = &entry.default,
+            .default_value_ptr = &entry.default,
             .is_comptime = false,
             .alignment = 0,
         };

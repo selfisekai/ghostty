@@ -266,7 +266,7 @@ pub fn parseIntoField(
                     try @field(dst, field.name).init(alloc);
                     return;
                 }
-                const raw = field.default_value orelse break :default;
+                const raw = field.default_value_ptr orelse break :default;
                 const ptr: *const field.type = @alignCast(@ptrCast(raw));
                 @field(dst, field.name) = ptr.*;
                 return;
@@ -519,7 +519,7 @@ pub fn parseAutoStruct(comptime T: type, alloc: Allocator, v: []const u8) !T {
     // Ensure all required fields are set
     inline for (info.fields, 0..) |field, i| {
         if (!fields_set.isSet(i)) {
-            const default_ptr = field.default_value orelse return error.InvalidValue;
+            const default_ptr = field.default_value_ptr orelse return error.InvalidValue;
             const typed_ptr: *const field.type = @alignCast(@ptrCast(default_ptr));
             @field(result, field.name) = typed_ptr.*;
         }
