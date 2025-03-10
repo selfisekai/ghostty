@@ -7,8 +7,9 @@
 
         .libxev = .{
             // mitchellh/libxev
-            .url = "https://github.com/mitchellh/libxev/archive/8943932a668f338cb2c500f6e1a7396bacd8b55d.tar.gz",
-            .hash = "1220a67b584c9499154de8c96851ed8e92315452cb2027c06e2d7d07a39c6f900d1a",
+            // fork: dadadani/libxev
+            .url = "https://github.com/dadadani/libxev/archive/dd096a684d1115ee3e21a977b4a47bf3d5dc819a.tar.gz",
+            .hash = "libxev-0.0.0-GdacvkapEwDRbqzpsM837X55NTKfpc1RINTF9ywj4a4q",
         },
         .mach_glfw = .{
             // mitchellh/mach-glfw
