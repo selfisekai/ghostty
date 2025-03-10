@@ -41,7 +41,7 @@ pub const single_threaded_draw = if (@hasDecl(apprt.Surface, "opengl_single_thre
 else
     false;
 const DrawMutex = if (single_threaded_draw) std.Thread.Mutex else void;
-const drawMutexZero = if (DrawMutex == void) void{} else .{};
+const drawMutexZero = if (DrawMutex == void) void{} else DrawMutex{};
 
 alloc: std.mem.Allocator,
 
