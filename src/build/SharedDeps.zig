@@ -593,7 +593,6 @@ pub fn add(
                     });
                     const ghostty_resources_c = generate_resources_c.addOutputFileArg("ghostty_resources.c");
                     generate_resources_c.addFileArg(gresource_xml);
-                    generate_resources_c.extra_file_dependencies = &gresource.dependencies;
                     step.addCSourceFile(.{ .file = ghostty_resources_c, .flags = &.{} });
 
                     const generate_resources_h = b.addSystemCommand(&.{
@@ -605,7 +604,6 @@ pub fn add(
                     });
                     const ghostty_resources_h = generate_resources_h.addOutputFileArg("ghostty_resources.h");
                     generate_resources_h.addFileArg(gresource_xml);
-                    generate_resources_h.extra_file_dependencies = &gresource.dependencies;
                     step.addIncludePath(ghostty_resources_h.dirname());
                 }
             },
