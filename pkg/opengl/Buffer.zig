@@ -115,12 +115,12 @@ pub const Binding = struct {
         ptr: *const anyopaque,
     } {
         return switch (@typeInfo(@TypeOf(data))) {
-            .Pointer => |ptr| switch (ptr.size) {
-                .One => .{
+            .pointer => |ptr| switch (ptr.size) {
+                .one => .{
                     .size = @sizeOf(ptr.child),
                     .ptr = data,
                 },
-                .Slice => .{
+                .slice => .{
                     .size = @intCast(@sizeOf(ptr.child) * data.len),
                     .ptr = data.ptr,
                 },
@@ -160,7 +160,7 @@ pub const Binding = struct {
             // The size of each component used in calculating the offset.
             offset: usize,
         } = switch (@typeInfo(T)) {
-            .Array => |ary| .{
+            .array => |ary| .{
                 .typ = switch (ary.child) {
                     f32 => c.GL_FLOAT,
                     else => @compileError("unsupported array child type"),

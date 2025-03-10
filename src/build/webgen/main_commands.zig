@@ -24,7 +24,7 @@ pub fn genActions(writer: anytype) !void {
         \\
     );
 
-    inline for (@typeInfo(Action).Enum.fields) |field| {
+    inline for (@typeInfo(Action).@"enum".fields) |field| {
         const action = std.meta.stringToEnum(Action, field.name).?;
 
         switch (action) {

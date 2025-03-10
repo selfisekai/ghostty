@@ -52,7 +52,7 @@ pub fn viewport(x: c.GLint, y: c.GLint, width: c.GLsizei, height: c.GLsizei) !vo
 
 pub fn pixelStore(mode: c.GLenum, value: anytype) !void {
     switch (@typeInfo(@TypeOf(value))) {
-        .ComptimeInt, .Int => glad.context.PixelStorei.?(mode, value),
+        .ComptimeInt, .int => glad.context.PixelStorei.?(mode, value),
         else => unreachable,
     }
     try errors.getError();

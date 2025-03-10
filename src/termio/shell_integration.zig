@@ -137,7 +137,7 @@ test "force shell" {
     var env = EnvMap.init(alloc);
     defer env.deinit();
 
-    inline for (@typeInfo(Shell).Enum.fields) |field| {
+    inline for (@typeInfo(Shell).@"enum".fields) |field| {
         const shell = @field(Shell, field.name);
         const result = try setup(alloc, ".", "sh", &env, shell, .{});
         try testing.expectEqual(shell, result.?.shell);
