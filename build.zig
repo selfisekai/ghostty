@@ -50,7 +50,7 @@ pub fn build(b: *std.Build) !void {
     // As such, these build steps are lacking. For example, the Darwin
     // build only produces an xcframework.
     if (config.app_runtime == .none) {
-        if (config.target.result.isDarwin()) darwin: {
+        if (config.target.result.os.tag.isDarwin()) darwin: {
             if (!config.emit_xcframework) break :darwin;
 
             // Build the xcframework

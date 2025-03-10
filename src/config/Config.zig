@@ -3023,7 +3023,7 @@ pub fn finalize(self: *Config) !void {
     // to look up defaults which is kind of expensive. We only do this
     // on desktop.
     const wd_home = std.mem.eql(u8, "home", wd);
-    if ((comptime !builtin.target.isWasm()) and
+    if ((comptime !builtin.target.cpu.arch.isWasm()) and
         (comptime !builtin.is_test))
     {
         if (self.command == null or wd_home) command: {
@@ -4293,7 +4293,7 @@ pub const Keybinds = struct {
             // The order of these blocks is important. The *last* added keybind for a given action is
             // what will display in the menu. We want the more typical keybinds after this block to be
             // the standard
-            if (!builtin.target.isDarwin()) {
+            if (!builtin.target.os.tag.isDarwin()) {
                 try self.set.put(
                     alloc,
                     .{ .key = .{ .translated = .insert }, .mods = .{ .ctrl = true } },
@@ -4308,7 +4308,7 @@ pub const Keybinds = struct {
 
             // On macOS we default to super but Linux ctrl+shift since
             // ctrl+c is to kill the process.
-            const mods: inputpkg.Mods = if (builtin.target.isDarwin())
+            const mods: inputpkg.Mods = if (builtin.target.os.tag.isDarwin())
                 .{ .super = true }
             else
                 .{ .ctrl = true, .shift = true };
@@ -4426,7 +4426,7 @@ pub const Keybinds = struct {
         );
 
         // Windowing
-        if (comptime !builtin.target.isDarwin()) {
+        if (comptime !builtin.target.os.tag.isDarwin()) {
             try self.set.put(
                 alloc,
                 .{ .key = .{ .translated = .n }, .mods = .{ .ctrl = true, .shift = true } },
@@ -4603,7 +4603,7 @@ pub const Keybinds = struct {
         {
             // On macOS we default to super but everywhere else
             // is alt.
-            const mods: inputpkg.Mods = if (builtin.target.isDarwin())
+            const mods: inputpkg.Mods = if (builtin.target.os.tag.isDarwin())
                 .{ .super = true }
             else
                 .{ .alt = true };
@@ -4621,7 +4621,7 @@ pub const Keybinds = struct {
                         // want to be true on other platforms as well but this
                         // is definitely true on macOS so we just do it here for
                         // now (#817)
-                        .key = if (comptime builtin.target.isDarwin())
+                        .key = if (comptime builtin.target.os.tag.isDarwin())
                             .{ .physical = @enumFromInt(i) }
                         else
                             .{ .translated = @enumFromInt(i) },
@@ -4634,7 +4634,7 @@ pub const Keybinds = struct {
             try self.set.put(
                 alloc,
                 .{
-                    .key = if (comptime builtin.target.isDarwin())
+                    .key = if (comptime builtin.target.os.tag.isDarwin())
                         .{ .physical = .nine }
                     else
                         .{ .translated = .nine },
@@ -4659,7 +4659,7 @@ pub const Keybinds = struct {
         );
 
         // Mac-specific keyboard bindings.
-        if (comptime builtin.target.isDarwin()) {
+        if (comptime builtin.target.os.tag.isDarwin()) {
             try self.set.put(
                 alloc,
                 .{ .key = .{ .translated = .q }, .mods = .{ .super = true } },

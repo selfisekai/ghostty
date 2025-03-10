@@ -82,7 +82,7 @@ fn setupShell(
         // If we're running "/bin/bash" on Darwin, we can assume
         // we're using Apple's Bash because /bin is non-writable
         // on modern macOS due to System Integrity Protection.
-        if (comptime builtin.target.isDarwin()) {
+        if (comptime builtin.target.os.tag.isDarwin()) {
             if (std.mem.eql(u8, "/bin/bash", command)) {
                 return null;
             }

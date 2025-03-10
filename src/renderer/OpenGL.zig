@@ -2327,7 +2327,7 @@ pub fn drawFrame(self: *OpenGL, surface: *apprt.Surface) !void {
     // This locks the context and avoids crashes that can happen due to
     // races with the underlying Metal layer that Apple is using to
     // implement OpenGL.
-    const is_darwin = builtin.target.isDarwin();
+    const is_darwin = builtin.target.os.tag.isDarwin();
     const ogl = if (comptime is_darwin) @cImport({
         @cInclude("OpenGL/OpenGL.h");
     }) else {};
