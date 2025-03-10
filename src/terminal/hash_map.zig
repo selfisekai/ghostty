@@ -117,11 +117,6 @@ fn HashMapUnmanaged(
     return struct {
         const Self = @This();
 
-        comptime {
-            std.hash_map.verifyContext(Context, K, K, u64, false);
-            assert(@alignOf(Metadata) == 1);
-        }
-
         const header_align = @alignOf(Header);
         const key_align = if (@sizeOf(K) == 0) 1 else @alignOf(K);
         const val_align = if (@sizeOf(V) == 0) 1 else @alignOf(V);
@@ -510,8 +505,6 @@ fn HashMapUnmanaged(
         /// from this function.  To encourage that, this function is
         /// marked as inline.
         inline fn getIndex(self: Self, key: anytype, ctx: anytype) ?usize {
-            comptime std.hash_map.verifyContext(@TypeOf(ctx), @TypeOf(key), K, Hash, false);
-
             if (self.header().size == 0) {
                 return null;
             }
@@ -693,8 +686,6 @@ fn HashMapUnmanaged(
             return result;
         }
         pub fn getOrPutAssumeCapacityAdapted(self: *Self, key: anytype, ctx: anytype) GetOrPutResult {
-            comptime std.hash_map.verifyContext(@TypeOf(ctx), @TypeOf(key), K, Hash, false);
-
             // If you get a compile error on this line, it means that your generic hash
             // function is invalid for these parameters.
             const hash = ctx.hash(key);
