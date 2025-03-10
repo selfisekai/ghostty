@@ -54,8 +54,9 @@
         },
         .gobject = .{
             // ianprime0509/zig-gobject
-            .url = "https://deps.files.ghostty.org/gobject-12208d70ee791d7ef7e16e1c3c9c1127b57f1ed066a24f87d57fc9f730c5dc394b9d.tar.zst",
-            .hash = "12208d70ee791d7ef7e16e1c3c9c1127b57f1ed066a24f87d57fc9f730c5dc394b9d",
+            // Generated from commit 25fffb01af86f4a43f068917fa65545a9791b32d
+            .url = "https://s.lnl.gay/kTaFXBbYaWpKpX31NPtzme4oyEDYWgyP.tar.zst",
+            .hash = "gobject-0.2.0-Skun7KHhlQAHUQlyjnsK5H1lWdbGBYtFZgl2HGIgoKbD",
         },
 
         // C libs
