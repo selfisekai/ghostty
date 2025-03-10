@@ -813,6 +813,7 @@ pub const Action = union(enum) {
     /// Returns a union type that only contains actions that are scoped to
     /// the given scope.
     pub fn Scoped(comptime s: Scope) type {
+        @setEvalBranchQuota(10_000);
         const all_fields = @typeInfo(Action).@"union".fields;
 
         // Find all fields that are app-scoped
