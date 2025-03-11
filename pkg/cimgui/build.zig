@@ -27,6 +27,7 @@ pub fn build(b: *std.Build) !void {
     // mode first. Mode first will search all paths for a dynamic library
     // before falling back to static.
     const dynamic_link_opts: std.Build.Module.LinkSystemLibraryOptions = .{
+        .needed = true,
         .preferred_link_mode = .dynamic,
         .search_strategy = .mode_first,
     };
