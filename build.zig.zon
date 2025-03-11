@@ -53,9 +53,8 @@
         },
         .gobject = .{
             // ianprime0509/zig-gobject
-            // Generated from commit 25fffb01af86f4a43f068917fa65545a9791b32d
-            .url = "https://s.lnl.gay/kTaFXBbYaWpKpX31NPtzme4oyEDYWgyP.tar.zst",
-            .hash = "gobject-0.2.0-Skun7KHhlQAHUQlyjnsK5H1lWdbGBYtFZgl2HGIgoKbD",
+            .url = "https://github.com/jcollie/ghostty-gobject/releases/download/0.14.0-2025-03-11-14-1/ghostty-gobject-0.14.0-2025-03-11-14-1.tar.gz",
+            .hash = "gobject-0.2.0-Skun7H6DlQDWCiNQtdE5TXYcCvx7MyjW01OQe5M_n_jV",
         },
 
         // C libs
